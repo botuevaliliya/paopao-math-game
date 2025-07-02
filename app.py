@@ -85,19 +85,19 @@ def init_game(level='easy'):
     if level == 'easy':
         board_size = 6
         pairs = dict(generate_easy_pairs())
-        TIME_LIMIT = 180
+        TIME_LIMIT = 240
     elif level == 'medium':
         board_size = 8
         pairs = dict(generate_medium_pairs())
-        TIME_LIMIT = 240
+        TIME_LIMIT = 480
     elif level == 'profi':
         board_size = 10
         pairs = dict(generate_profi_pairs())
-        TIME_LIMIT = 300
+        TIME_LIMIT = 960
     else:
         board_size = 6
         pairs = dict(generate_easy_pairs())
-        TIME_LIMIT = 180
+        TIME_LIMIT = 240
 
     reverse_pairs = {v: k for k, v in pairs.items()}
     generate_valid_board()

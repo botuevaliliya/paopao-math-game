@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PaoPao</title>
+  <style>
+    .board { display: flex; flex-direction: column; align-items: center; }
+    .row { display: flex; }
+    .tile {
+      width: 60px;
+      height: 60px;
+      font-size: 10px;
+      text-align: center;
+      line-height: 60px;
+      border: 1px solid #ccc;
+      margin: 2px;
+      background-color: #f2f2f2;
+    }
+    .selected { background-color: #b3d9ff; }
+    .tile a { display: block; width: 100%; height: 100%; text-decoration: none; color: inherit; }
+  </style>
+</head>
+<body>
+  <h1>PaoPao Game for Mental Calc</h1>
+  <div id="progress-container" style="width: 100%; background-color: #ddd;">
+    <div id="progress-bar" style="height: 10px; background-color: rgb(101, 105, 112); width: 100%;"></div>
+  </div>
+  <p id="time-left" style="font-weight: bold;">Time left: <span id="time">{{time_left}}</span> seconds</p>
+<div style="margin: 20px;">
+    <a href="{{ url_for('set_difficulty', level='easy') }}"><button>Easy</button></a>
+    <a href="{{ url_for('set_difficulty', level='medium') }}"><button>Medium</button></a>
+    <a href="{{ url_for('set_difficulty', level='profi') }}"><button>Profi</button></a>
+  </div>
+  <div class="board">
+    {% for row_idx, row in board_with_indices %}
+      <div class="row">
+        {% for col_idx, emoji in row %}
+          <div class="tile {% if (row_idx, col_idx) in selected %}selected{% endif %}">
+            {% if emoji %}
+              <a href="{{ url_for('select_tile', row=row_idx, col=col_idx) }}">{{ emoji }}</a>
+            {% else %}
+              &nbsp;
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    let total = {{ time_limit }};
+    let timeLeft = {{ time_left }};
+    const bar = document.getElementById("progress-bar");
+
+    function updateBar() {
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        window.location.href = "/timeout";  // or show message
+      } else {
+        let percent = (timeLeft / total) * 100;
+        bar.style.width = percent + "%";
+        document.getElementById("time-left").innerText = `Time left: ${timeLeft} seconds`;
+        timeLeft -= 1;
+      }
+    }
+
+    setInterval(updateBar, 1000);
+  </script>
+</body>
+</html>

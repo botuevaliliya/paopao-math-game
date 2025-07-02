@@ -2,6 +2,9 @@
 
 Paopao is a fun and interactive web-based tile-matching game that combines logic puzzles with simple math problems. Inspired by classic match-2 games, players connect tiles with matching math expressions before time runs out!  
 
+[Play the Math PaoPao Game!](https://paopao-math-game.onrender.com)
+
+
 ## Features 
 
 - **3 Difficulty Levels**: Easy, Medium, Profi — with increasing board sizes and expression complexity.  

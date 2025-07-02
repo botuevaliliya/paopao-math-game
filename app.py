@@ -127,7 +127,7 @@ def is_path_clear(board, r1, c1, r2, c2):
 
     for d, (dr, dc) in enumerate(directions):
         nr, nc = r1 + dr, c1 + dc
-        if in_bounds(nr, nc) and board[nr][nc] is None:
+        if in_bounds(nr, nc) and (board[nr][nc] is None or (nr, nc) == (r2, c2)):
             visited[nr][nc][d] = 0
             queue.append((nr, nc, d, 0))
 
@@ -149,6 +149,7 @@ def is_path_clear(board, r1, c1, r2, c2):
                 queue.append((nr, nc, d, new_turns))
 
     return False
+
 
 def generate_valid_board():
     while True:
@@ -268,3 +269,4 @@ if __name__ == '__main__':
     init_game('easy')
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+    # app.run(debug=True)

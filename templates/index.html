@@ -55,7 +55,7 @@
     function updateBar() {
       if (timeLeft <= 0) {
         clearInterval(timer);
-        window.location.href = "/timeout";  // or show message
+        window.location.href = "/timeout";
       } else {
         let percent = (timeLeft / total) * 100;
         bar.style.width = percent + "%";

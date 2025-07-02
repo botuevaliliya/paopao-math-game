@@ -4,6 +4,9 @@ Paopao is a fun and interactive web-based tile-matching game that combines logic
 
 [Play the Math PaoPao Game!](https://paopao-math-game.onrender.com)
 
+# Why This Game Is Valuable
+This isn't just a game — it's a fun and effective brain workout. The PaoPao-style matching mechanic challenges your **working memory**, focus, and attention under time pressure. Beyond math practice, the same format can be adapted for **language learning** (e.g., matching words with their translations) or even for **kids’ vocabulary building** (e.g., matching images with words). With simple rules and flexible content, this game can be applied to a wide range of educational and cognitive training use cases.
+
 
 ## Features 
 

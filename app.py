@@ -1,9 +1,6 @@
-# Updated app.py with enhanced Paopao logic
 from flask import Flask, render_template, redirect, url_for, request, session
-import pandas as pd
 import random
 from collections import deque
-import copy
 import time
 
 app = Flask(__name__)
@@ -78,17 +75,6 @@ def pad_board(b):
         new_board.append([None] + row + [None])
     new_board.append([None] * (cols + 2))
     return new_board
-
-# df = pd.DataFrame([
-#     ["tomato", "помидор"],
-#     ["apple", "яблоко"],
-#     ["car", "машина"],
-#     ["house", "дом"],
-#     ["dog", "собака"],
-#     ["cat", "кот"],
-#     ["water", "вода"],
-#     ["sun", "солнце"]
-# ], columns=["en", "ru"])
 
 def init_game(level='easy'):
     global board, selected, pairs, reverse_pairs, board_size, TIME_LIMIT
@@ -166,8 +152,6 @@ def is_path_clear(board, r1, c1, r2, c2):
 def generate_valid_board():
     while True:
         words = list(pairs.keys()) + list(reverse_pairs.keys())
-        if len(words) != board_size * board_size:
-            raise ValueError(f"Expected {board_size**2} words, got {len(words)}\n{pairs}")
         random.shuffle(words)
         real_board = [words[i:i + board_size] for i in range(0, len(words), board_size)]
         padded = pad_board(real_board)
